@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-jsx-ref-to-function",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Replace string value of the ref attribute to function",
   "main": "lib/index.js",
   "scripts": {
