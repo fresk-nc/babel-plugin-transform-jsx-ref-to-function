@@ -20,8 +20,9 @@
 $ npm install babel-plugin-transform-jsx-ref-to-function
 ```
 
-**.babelrc**
-```json
+Add this to you babel config plugins
+
+```javascript
 plugins: [
     'babel-plugin-transform-jsx-ref-to-function'
 ]
