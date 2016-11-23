@@ -21,7 +21,7 @@ const configWithoutPlugin = {
 };
 
 describe('babel-plugin-transform-jsx-ref-to-function', () => {
-    it('should not replace other attributes', () => {
+    it('should ignores other attributes', () => {
         const code = '<div className="some-className" size="m" />';
         const actual = transform(code, config).code;
         const expected = transform(code, configWithoutPlugin).code;
@@ -29,7 +29,7 @@ describe('babel-plugin-transform-jsx-ref-to-function', () => {
         expect(actual).to.equal(expected);
     });
 
-    it('should not replace ref that contains function', () => {
+    it('should ignores ref with non-string value', () => {
         const code = '<div ref={(el) => this._el = el} />';
         const actual = transform(code, config).code;
         const expected = transform(code, configWithoutPlugin).code;
@@ -37,7 +37,15 @@ describe('babel-plugin-transform-jsx-ref-to-function', () => {
         expect(actual).to.equal(expected);
     });
 
-    it('should replace string value of the ref to function', () => {
+    it('should ignores ref inside component', () => {
+        const code = '<Button ref="button" />';
+        const actual = transform(code, config).code;
+        const expected = transform(code, configWithoutPlugin).code;
+
+        expect(actual).to.equal(expected);
+    });
+
+    it('should replaces string value to function', () => {
         const code = '<div ref="input" />';
         const expectedCode = '<div ref={el => this["input"] = el} />';
         const actual = transform(code, config).code;

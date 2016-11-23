@@ -1,9 +1,15 @@
+function isComponent(node) {
+    const firstLetter = node.name.name[0];
+    return firstLetter === firstLetter.toUpperCase();
+}
+
 export default ({ types: t }) => {
     return {
         visitor: {
             JSXAttribute(path) {
                 if (!t.isJSXIdentifier(path.node.name, { name: 'ref' }) ||
-                    !t.isStringLiteral(path.node.value)
+                    !t.isStringLiteral(path.node.value) ||
+                    isComponent(path.parent)
                 ) {
                     return;
                 }
