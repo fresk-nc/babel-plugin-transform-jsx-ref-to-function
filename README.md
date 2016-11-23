@@ -17,7 +17,7 @@
 ## Installation
 
 ```sh
-$ npm install babel-plugin-transform-jsx-ref-to-function
+$ npm i --save-dev babel-plugin-transform-jsx-ref-to-function
 ```
 
 Add this to you babel config plugins
