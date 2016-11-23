@@ -38,16 +38,8 @@ describe('babel-plugin-transform-jsx-ref-to-function', () => {
     });
 
     it('should replace string value of the ref to function', () => {
-        const code = `var Button = {
-            render() {
-                return <div ref="input" />;
-            }
-        }`;
-        const expectedCode = `var Button = {
-            render() {
-                return <div ref={el => this['input'] = el} />;
-            }
-        }`;
+        const code = '<div ref="input" />';
+        const expectedCode = '<div ref={el => this["input"] = el} />';
         const actual = transform(code, config).code;
         const expected = transform(expectedCode, configWithoutPlugin).code;
 

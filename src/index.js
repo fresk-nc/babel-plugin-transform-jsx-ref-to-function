@@ -16,7 +16,11 @@ export default ({ types: t }) => {
                                 [ t.identifier('el') ],
                                 t.assignmentExpression(
                                     '=',
-                                    t.identifier(`this['${path.node.value.value}']`),
+                                    t.memberExpression(
+                                        t.thisExpression(),
+                                        t.stringLiteral(path.node.value.value),
+                                        true
+                                    ),
                                     t.identifier('el')
                                 )
                             )
