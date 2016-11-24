@@ -37,14 +37,6 @@ describe('babel-plugin-transform-jsx-ref-to-function', () => {
         expect(actual).to.equal(expected);
     });
 
-    it('should ignores ref inside component', () => {
-        const code = '<Button ref="button" />';
-        const actual = transform(code, config).code;
-        const expected = transform(code, configWithoutPlugin).code;
-
-        expect(actual).to.equal(expected);
-    });
-
     it('should replaces string value to function', () => {
         const code = '<div ref="input" />';
         const expectedCode = '<div ref={el => this["input"] = el} />';
